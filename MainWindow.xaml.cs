@@ -1,24 +1,35 @@
-﻿using System.Text;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using ChatStudents.Models;
 
 namespace ChatStudents
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        // Singleton паттерн
+        private static MainWindow _instance;
+        public static MainWindow Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new MainWindow();
+                return _instance;
+            }
+        }
+
+        public Users LoginUser { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
+            _instance = this;
+        }
+
+        public void OpenPages(Page page)
+        {
+            MainFrame.Navigate(page);
         }
     }
 }

@@ -1,42 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChatStudents.Models
 {
     public class Users
     {
-        /// <summary>
-        /// Код пользователя
-        /// </summary>
         public int Id { get; set; }
 
-        /// <summary>
-        /// Фамилия
-        /// </summary>
-        public string Lastname { get; set; }
+        public string Lastname { get; set; } = string.Empty;
 
-        /// <summary>
-        /// Имя пользователя
-        /// </summary>
-        public string Firstname { get; set; }
+        public string Firstname { get; set; } = string.Empty;
 
-        /// <summary>
-        /// Отчество
-        /// </summary>
-        public string Surname { get; set; }
+        public string? Surname { get; set; }
 
-        /// <summary>
-        /// Фотография (хранится в виде массива байтов)
-        /// </summary>
-        public byte[] Photo { get; set; }
+        public byte[]? Photo { get; set; }
 
-        /// <summary>
-        /// Конструктор для заполнения объекта
-        /// </summary>
-        public Users(string lastname, string firstname, string surname, byte[] photo)
+        // Конструктор без параметров (для EF Core)
+        public Users()
+        {
+            Lastname = string.Empty;
+            Firstname = string.Empty;
+        }
+
+        // Конструктор с параметрами
+        public Users(string lastname, string firstname, string? surname, byte[]? photo)
         {
             Lastname = lastname;
             Firstname = firstname;
@@ -44,17 +30,9 @@ namespace ChatStudents.Models
             Photo = photo;
         }
 
-        /// <summary>
-        /// Пустой конструктор (нужен для Entity Framework)
-        /// </summary>
-        public Users() { }
-
-        /// <summary>
-        /// Получить ФИО пользователя
-        /// </summary>
         public string ToFIO()
         {
-            return $"{Lastname} {Firstname} {Surname}";
+            return $"{Lastname} {Firstname} {Surname}".Trim();
         }
     }
 }

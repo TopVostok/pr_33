@@ -1,23 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ChatStudents.Classes.Common;
+﻿using ChatStudents.Classes.Common;
 using ChatStudents.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
 
 namespace ChatStudents.Classes
 {
-    public class MessagesContext
+    public class MessagesContext : DbContext
     {
-        public DbSet<Messages> Massages { get; set; }
-        public MessagesContext() =>
-            Database.EnsureCreated();
+        public DbSet<Messages> Messages { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
-        // Говорим что используем SQL Server со следующей конфигурацией
-        optionsBuilder.UseSqlServer(Config.config);
+        public MessagesContext()
+        {
+            Database.EnsureCreated();
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(Config.config);
+            }
+        }
     }
 }
