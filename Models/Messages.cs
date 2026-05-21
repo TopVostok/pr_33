@@ -24,6 +24,7 @@ namespace ChatStudents.Models
         public int UserTo { get; set; }
 
         /// <summary>
+        /// 
         /// Текст сообщения
         /// </summary>
         public string Message { get; set; }
