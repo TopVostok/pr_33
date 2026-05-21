@@ -26,6 +26,7 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto" Background="#F5F5F5">
                 <StackPanel x:Name="ParentUsers">
                     <!-- Здесь будут отображаться пользователи -->
+                    
                 </StackPanel>
             </ScrollViewer>
 
